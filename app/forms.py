@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, SelectField, \
     SelectMultipleField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
-from app.models import User, Venue, City, Artist
+from app.models import User, City, State, Country, CityToState, StateToCountry
 from wtforms.fields.html5 import DateField, DateTimeField
 
 
@@ -30,18 +30,20 @@ class CreateAccountForm(FlaskForm):
         if user is not None:
             raise ValidationError('Please use a different email address.')
 
-class AddNewArtistForm(FlaskForm):
-    new_artist = StringField('Artist Name', validators=[DataRequired()])
-    town = StringField('Hometown')
+class NewFutureLocation(FlaskForm):
+    country = StringField('Country', validators=[DataRequired()])
+    state = StringField('State', validators=[DataRequired()])
+    city = StringField('City')
     description = TextAreaField('Description', validators=[DataRequired()])
-    submit = SubmitField('Add Artist')
+    submit = SubmitField('Add Location')
 
 
-class AddNewVenueForm(FlaskForm):
-    venue = StringField('Venue Name', validators=[DataRequired()])
-    #LIST TOWN
-    city = SelectField(u'Venue Location', coerce=int)
-    submit = SubmitField('Add Venue')
+class NewPastLocation(FlaskForm):
+    country = StringField('Country', validators=[DataRequired()])
+    state = StringField('State', validators=[DataRequired()])
+    city = StringField('City')
+    description = TextAreaField('Description', validators=[DataRequired()])
+    submit = SubmitField('Add Location')
 
 
 class AddEventForm(FlaskForm):

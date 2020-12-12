@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content%}
+    <h1>Enter Past Location</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.country.label }}
+            {{ form.country(size=32) }}
+        </p>
+        <p>
+            {{ form.state.label }}
+            {{ form.state(size=32) }}
+        </p>
+        <p>
+            {{ form.city.label }}
+            {{ form.city(size=32) }}
+        </p>
+        <p>
+            {{ form.description.label }}
+            {{ form.description() }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}
